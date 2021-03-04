@@ -41,3 +41,5 @@ The application built has been partially tested with the Junit 5 and Mockito Fra
 
 Please refer to the test packages under the test source code.
 
+# Updated the README.md file with the code comments for the main java class (FastestNumberGuessAssignment) for brevity purpose.
+
