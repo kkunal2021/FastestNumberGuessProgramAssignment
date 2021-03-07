@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Pattern;
 
 /**
  * @author kunal
@@ -18,6 +19,9 @@ public class FastestNumberGuessAssignment implements Runnable {
     private static int inputNumber;
     private static int kunal;
 
+    private static int counterCount = 1;
+    private static int loopCounterCount = 0;
+
     /*
         Made the "scanner" static so that the main method can close it once everything is done.
     */
@@ -27,11 +31,14 @@ public class FastestNumberGuessAssignment implements Runnable {
 
         try {
             kunal = -1;
-
+            //boolean isFloatOnly = Pattern.matches("[0-9]+", scanner);
             /*
                 hasNext --- returns true if this scanner has another token in its input.
              */
-            while (kunal != inputNumber && scanner.hasNext()) {
+            while (kunal != inputNumber && counterCount <= 999999999999999l && scanner.hasNextInt()) {
+                loopCounterCount = loopCounterCount + 1;
+                counterCount++;
+                logger.info("Total iterations or comparisons done by all the threads to reach or find that number {} " + counterCount++);
 
                 /*
                     Added a check for interrupt, otherwise this thread will never end unless the user enters the input.
