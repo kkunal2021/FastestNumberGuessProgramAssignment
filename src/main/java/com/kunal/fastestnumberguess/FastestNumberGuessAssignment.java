@@ -31,6 +31,7 @@ public class FastestNumberGuessAssignment implements Runnable {
 
         try {
             kunal = -1;
+            int numberOfTries = 0;
             //boolean isFloatOnly = Pattern.matches("[0-9]+", scanner);
             /*
                 hasNext --- returns true if this scanner has another token in its input.
@@ -38,7 +39,9 @@ public class FastestNumberGuessAssignment implements Runnable {
             while (kunal != inputNumber && counterCount <= 999999999999999l && scanner.hasNextInt()) {
                 loopCounterCount = loopCounterCount + 1;
                 counterCount++;
+                numberOfTries = numberOfTries + 1;
                 logger.info("Total iterations or comparisons done by all the threads to reach or find that number {} " + counterCount++);
+                logger.info("It has taken " + numberOfTries + " tries to execute the task ! ");
 
                 /*
                     Added a check for interrupt, otherwise this thread will never end unless the user enters the input.
@@ -126,6 +129,7 @@ public class FastestNumberGuessAssignment implements Runnable {
             1e9 is scientific notation used to denote the number followed by nine zeros
          */
         long end = System.nanoTime();
-        System.out.println("Your number is found in " + (double) (end - start) / 1e9 + " ms");
+        long timeElapsed = end - start;
+        logger.info("Your number is found in " + timeElapsed / 1000000 + " milliseconds");
     }
 }
